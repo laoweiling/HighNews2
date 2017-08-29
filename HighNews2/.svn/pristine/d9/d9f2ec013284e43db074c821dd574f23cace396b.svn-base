@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.NewsBean" >
+        <id name="newsid" type="java.lang.Integer">
+            <generator class="native"></generator>
+        </id>
+        <property name="newstitle" type="java.lang.String" length="80"></property>
+        <property name="author" type="java.lang.String" length="50" ></property>
+        <property name="content" type="java.lang.String" length="50" ></property>
+        <property name="pubtime" type="java.lang.String" length="20" ></property>
+        <property name="newspic" type="java.lang.String" length="100" ></property>
+      
+        <!-- 改动一下 -->
+        <many-to-one name="newsTypebean" class="entity.NewstypeBean"  fetch="select">
+        	<column name="typeid"></column>
+        </many-to-one>
+     
+    </class>
+</hibernate-mapping>
+
+ 

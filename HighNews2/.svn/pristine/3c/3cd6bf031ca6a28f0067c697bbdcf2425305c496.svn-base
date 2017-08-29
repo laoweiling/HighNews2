@@ -1,0 +1,44 @@
+package service.impl;
+
+import java.util.List;
+import java.util.Vector;
+
+import org.hibernate.Transaction;
+import org.hibernate.classic.Session;
+
+import dao.NewsDao;
+import dao.impl.NewsDaoImpl;
+import service.NewsService;
+import util.HibernateSessionFactory;
+import entity.NewsBean;
+
+public class NewsServiceImpl implements NewsService{
+
+	public NewsBean getNews(int _id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<NewsBean> getNews(String select_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean addnews(NewsBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean removenews(int _id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public boolean changenews(NewsBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,45 @@
+package service.impl;
+
+import java.util.List;
+
+import org.hibernate.classic.Session;
+
+import util.HibernateSessionFactory;
+import dao.NewsDao;
+import dao.impl.NewsDaoImpl;
+import entity.NewsBean;
+import entity.UsersBean;
+
+public class UsersServiceImpl implements service.UsersService {
+
+	@Override
+	public UsersBean getUserById(int _id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UsersBean> getUser(String select_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addUser(UsersBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeUserById(int _id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean changeUser(UsersBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

@@ -1,0 +1,14 @@
+package dao;
+
+import java.util.List;
+import java.util.Vector;
+
+import entity.NewstypeBean;
+
+public interface NewsTypeDao {
+	 public NewstypeBean selectNewstypeById(int _typeid);    //按类型号查找
+	 public List<NewstypeBean> selectNewstype(String select_type);   //查全部，查单个
+     public   boolean  insertnewstype(NewstypeBean r);    //增
+	 public   boolean  deletenewstypeById(int _typeid);    //删
+	 public   boolean  updatenewstype(NewstypeBean r);    //改
+}

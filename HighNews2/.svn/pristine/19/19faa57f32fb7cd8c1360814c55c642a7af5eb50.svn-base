@@ -1,0 +1,44 @@
+package dao.impl;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import dao.NewsDao;
+
+public class NewsDaoImplTest {
+
+	@Test
+	public void testDeleteNews() {
+		NewsDao  newsDaoImpl=new NewsDaoImpl();
+		boolean flag=newsDaoImpl.deleteNews(2);
+		System.out.println(flag);
+	//	fail("Not yet implemented");
+	}
+
+	@Test
+	public void testInsertNews() {
+		//fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSelectNews() {
+		//fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSelectNewstype() {
+	//	fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateNews() {
+	//	fail("Not yet implemented");
+	}
+
+	@Test
+	public void testMain() {
+		//fail("Not yet implemented");
+	}
+
+}

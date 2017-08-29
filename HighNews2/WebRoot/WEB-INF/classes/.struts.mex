@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <webResource name="addusertab.jsp" path="/MyIndex/UI_JSP/addusertab.jsp" location="0,0" size="0,0" />
+  <webResource name="admintab.jsp" path="/MyIndex/UI_JSP/admintab.jsp" location="0,0" size="0,0" />
+  <webResource name="addtab.jsp" path="/MyIndex/UI_JSP/addtab.jsp" location="0,0" size="0,0" />
+  <webResource name="adminmanager.jsp" path="/MyIndex/UI_JSP/adminmanager.jsp" location="0,0" size="0,0" />
+  <webResource name="error.jsp" path="/MyIndex/UI_JSP/error.jsp" location="0,0" size="0,0" />
+  <include file="struts_emp.xml" location="0,0" size="0,0" />
+  <include file="struts_dept.xml" location="0,0" size="0,0" />
+</Struts2Diagram>
+

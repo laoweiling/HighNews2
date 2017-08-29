@@ -1,0 +1,44 @@
+package service.impl;
+
+import java.util.List;
+
+import org.hibernate.classic.Session;
+
+import service.NewsService;
+import service.NewsTypeService;
+import entity.NewsBean;
+import entity.NewstypeBean;
+
+public class NewsTypeServiceImpl implements NewsTypeService {
+
+	@Override
+	public NewstypeBean getNewstype(int _typeid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<NewstypeBean> getNewstype(String select_type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addnewstype(NewstypeBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removenewstype(int _typeid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean changenewstype(NewstypeBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

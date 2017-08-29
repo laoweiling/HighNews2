@@ -1,0 +1,41 @@
+package dao.impl;
+
+import java.util.Vector;
+
+import dao.NewsTypeDao;
+
+import entity.NewstypeBean;
+
+public class NewsTypeDaoImpl implements NewsTypeDao{
+
+	@Override
+	public boolean deletenewstype(int typeid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertnewstype(NewstypeBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public NewstypeBean selectNewstype(int typeid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<NewstypeBean> selectNewstype(String selectType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updatenewstype(NewstypeBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

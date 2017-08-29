@@ -1,0 +1,8 @@
+show tables;
+
+desc newsBean
+SELECT * FROM usersBean;
+SELECT * FROM newsBean;
+SELECT * FROM newstypeBean;
+SELECT * FROM STUDENT;
+

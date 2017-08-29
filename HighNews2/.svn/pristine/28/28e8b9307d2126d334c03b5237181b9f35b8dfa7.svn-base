@@ -1,0 +1,69 @@
+package dao.impl;
+
+import java.util.Vector;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import dao.UsersDao;
+
+import util.HibernateSessionFactory;
+
+import entity.UsersBean;
+
+public class UsersDaoImpl implements UsersDao{
+	boolean flag=false;
+	@Override
+	public boolean deleteUsersById(int userid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	@Override
+	public boolean insertUsers(UsersBean r) {
+		Session session = HibernateSessionFactory.getSession();
+		
+	/*	SessionFactory sf =new Configuration().configure().buildSessionFactory();
+	  Session session = sf.openSession();
+		*/
+		System.out.println(r);
+		session.save(r);
+		System.out.println("≤Â»Î”Ôæ‰");
+		session.beginTransaction();
+		session.getTransaction().commit();
+		session.close();
+		flag=true;
+		return flag;
+	}
+
+	@Override
+	public UsersBean selectUsersById(int userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<UsersBean> selectUsers(String selectType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateUsers(UsersBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public static void main(String[] args){
+		UsersBean usersBean=new UsersBean();
+		usersBean.setUsername("f");
+		usersBean.setUserpwd("123456");
+		usersBean.setUserleval(1);
+		UsersDaoImpl usersDao=new UsersDaoImpl();
+		boolean flag=usersDao.insertUsers(usersBean);
+		System.out.println(flag);
+	}
+
+}

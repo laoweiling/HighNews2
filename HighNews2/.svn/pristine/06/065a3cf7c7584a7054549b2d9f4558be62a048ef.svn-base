@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.devMode" value="true"/>
+  <!-- User包-->
+    <package name="UsersPackage" extends="struts-default"  namespace="/">
+   
+     <action name="AddUsersAction"  class="action.AddUsersAction" >  
+        <result>/MyIndex/UI_JSP/addusertab.jsp</result>
+     </action>
+    </package>
+</struts>    

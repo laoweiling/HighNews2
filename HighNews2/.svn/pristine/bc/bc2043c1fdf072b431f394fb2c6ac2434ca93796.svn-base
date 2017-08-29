@@ -1,0 +1,15 @@
+package dao;
+
+import java.util.List;
+import java.util.Vector;
+
+import entity.NewsBean;
+import entity.UsersBean;
+
+public interface UsersDao {
+	public UsersBean selectUsers(int _userid); 
+	public List<UsersBean> selectUsers(String select_type);
+	public  boolean  insertUsers(UsersBean r);
+	public boolean  deleteUsers(int _userid);    //É¾s
+	public  boolean  updateUsers(UsersBean r);    //¸Ä
+}

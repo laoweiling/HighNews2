@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd"> 
+<struts>
+
+	<!-- 开启开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+     <!-- NewsType包-->
+    <package name="NewsTypePackage" extends="struts-default" namespace="/">
+   	<!-- 海源改 -->
+     <action name="SelectNewsType"  class="action.NewsTypeAction" method="SelectNewsType">  
+        <result name="select_newsType">/MyIndex/UI_JSP/selnewstypetab.jsp</result>
+     </action>
+     <!-- 斯云改 -->
+     <action name="UpdateType"  class="action.NewsTypeAction" method="UpdateNewsType">  
+        <result name="update_newsType" type="dispatcher">/MyIndex/UI_JSP/selnewstypetab.jsp</result>
+     </action>
+     <action name="DeleteTypeById"  class="action.NewsTypeAction" method="DeleteNewsTypeById">  
+        <result name="delete_newsTypeById" type="dispatcher">/MyIndex/UI_JSP/selnewstypetab.jsp</result>
+     </action>
+     <!-- 斯云改 -->
+     <action name="InsertNewsType" class="action.NewsTypeAction" method="InsertNewsType">
+     	<result name="insert_newsType" type="dispatcher">/MyIndex/UI_JSP/addnewstypetab.jsp</result>
+     </action>
+     <!-- 海源改 -->
+    </package>
+	
+    <!-- lizhen  20170110 -->
+    <!-- User包 -->
+    <package name="UsersPackage" extends="struts-default"  namespace="/">
+    	<action name="InsertUser"  class="action.UsersAction" method="InsertUser"> 
+    	  	<result name="insert_user" type="dispatcher">/MyIndex/UI_JSP/addusertab.jsp</result>
+    	</action>
+    	<action name="DeleteUser" class="action.UsersAction" method="DeleteUserById">
+    		<result name="delete_userById" type="dispatcher">/MyIndex/UI_JSP/selallnewstypetab.jsp</result>
+    	</action>
+    	<action name="UpdateUser" class="action.UsersAction" method="UpdateUser">
+    		<result name="update_user" type="dispatcher">/MyIndex/UI_JSP/selalluserstab.jsp</result>
+    	</action>
+    	<action name="SelectUser" class="action.UsersAction" method="SelectUserById">
+    		<result name="show" type="dispatcher">/WEB-INF/JSP/selalluserstab.jsp</result>
+    		<result name="renew" type="dispatcher">/MyIndex/UI_JSP/renewuserstab.jsp</result>
+    		<result name="del" type="dispatcher">/MyIndex/UI_JSP/deluserstab.jsp</result>
+    	</action>
+    	<action name="method" class="action.UsersAction" method="resourceUserAction">
+    		<result name="add" type="dispatcher">/MyIndex/UI_JSP/selalluserstab.jsp</result>
+    		<result name="renew" type="dispatcher">/MyIndex/UI_JSP/selalluserstab.jsp</result>
+    		<result name="del" type="dispatcher">/MyIndex/UI_JSP/selalluserstab.jsp</result>
+    		<result name="sel" type="dispatcher">/MyIndex/UI_JSP/seluserstab.jsp</result>
+    	</action>
+    </package>
+    <!-- lizhen 20170111 -->
+
+</struts>    

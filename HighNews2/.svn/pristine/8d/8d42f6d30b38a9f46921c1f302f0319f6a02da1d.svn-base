@@ -1,0 +1,13 @@
+package service;
+
+import java.util.List;
+
+import entity.UsersBean;
+
+public interface UsersService {
+	 public UsersBean getUser(int _id);    //按类型号查找
+	 public List<UsersBean> getUser(String select_);   //查全部，查单个
+	 public   boolean  addUser(UsersBean r);    //增
+	 public   boolean  removeUser(int _id);    //删
+	 public   boolean  changeUser(UsersBean r);    //改
+}

@@ -1,0 +1,29 @@
+package action;
+
+import entity.NewsBean;
+
+public class NewsAction {
+	private NewsBean news;
+	public NewsBean getNews() {
+		return news;
+	}
+	public void setNews(NewsBean news) {
+		this.news = news;
+	}
+	public String UpdateNews(){
+		return "SUCCESS";
+	}
+	public String InsertNewsById(){
+		return "SUCCESS";
+	}
+	public String DeleteNewsById(){
+		return "SUCCESS";
+	}
+	public String SelectNewsById(){
+		return "SUCCESS";
+	}
+	
+	public String SelectNews(){
+		return "SUCCESS";
+	}
+}

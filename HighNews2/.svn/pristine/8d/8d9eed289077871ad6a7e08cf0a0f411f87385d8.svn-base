@@ -1,0 +1,125 @@
+package dao.impl;
+
+import java.util.Vector;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import dao.NewsDao;
+
+import util.HibernateSessionFactory;
+import entity.NewsBean;
+import entity.UsersBean;
+public class NewsDaoImpl implements NewsDao{
+     boolean flag=false;
+     Session session;
+	@Override
+	public boolean deleteNewsById(int newsid) {
+		  session = HibernateSessionFactory.getSession();	
+		  session.beginTransaction();
+			
+		  System.out.println(newsid);
+	      
+		  String hql="delete NewsBean where newsid=:newsid";
+	      Transaction t=null;
+	      try
+	      {
+	        t=session.beginTransaction();
+	         Query q=session.createQuery(hql);
+	          q.setParameter("newsid", newsid);
+	          q.executeUpdate();
+	          t.commit();
+	      }
+	      catch(Exception ex)
+	      {    	  
+	       if(t!=null)
+	       {
+	        t.rollback();
+	       }
+	      }finally
+	      {
+	       session.close();
+	      }
+	    	flag=true;
+			return flag;
+	}
+
+	
+	@Override
+	//添加新闻信息
+	public boolean insertNews(NewsBean nB) {
+		    Session session = HibernateSessionFactory.getSession();	
+			System.out.println(nB);
+			session.save(nB);
+			System.out.println("插入语句");
+			session.beginTransaction();
+			session.getTransaction().commit();
+	    	session.close();
+	    	flag=true;
+			return flag;
+		
+	}
+
+	
+	//newstype为空 延迟加载问题
+	@Override
+	public NewsBean selectNewsById(int newsid) {
+		session = HibernateSessionFactory.getSession();	
+		//  session.beginTransaction();
+		NewsBean news=(NewsBean)session.get(entity.NewsBean.class, 1);
+		return news;
+		//Query query = session.createQuery("select e from NewsBean e where e.newsid = :did");
+		//query.setInteger("did", newsid);
+		//return (NewsBean) query.list();
+	}
+
+	@Override
+	public Vector<NewsBean> selectNewsById(String selectType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateNews(NewsBean nB) {
+		  session = HibernateSessionFactory.getSession();	
+		  session.beginTransaction();
+
+		session.update(nB);
+	
+		session.getTransaction().commit();
+    	session.close();
+    	flag=true;
+		return flag;
+	
+	}
+
+	public static void main(String[] args){
+		NewsDaoImpl newsDaoImpl=new NewsDaoImpl();
+		//	System.out.println("fdsfsdfsdfds"+newsDaoImpl.selectNewsById(1));
+		//	NewsBean newsBean=new NewsBean();
+		//	newsBean.setTypeid(1);
+		//	boolean flag=newsDaoImpl.deleteNewsById(1);
+		
+		
+		
+		NewsBean newsBean=new NewsBean();
+		newsBean=newsDaoImpl.selectNewsById(1);
+		//newsBean.setNewsid(1);
+	//	newsBean=newsDaoImpl.selectNewsById(1);
+		
+		System.out.println(newsBean);
+		
+		
+		/*newsBean.setTypeid(1);
+		newsBean.setAuthor("黄卉");
+		
+		newsBean.setNewspic("sds");
+		newsBean.setContent("dsd发多少分大师傅sa");
+		newsBean.setNewstitle("劳老师");
+		newsBean.setPubtime("1032-12-19");
+		
+		boolean flag=newsDaoImpl.updateNews(newsBean);
+		System.out.println("删除成功"+flag);*/
+	}
+}

@@ -1,0 +1,65 @@
+package dao.impl;
+
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import util.HibernateSessionFactory;
+import dao.NewsTypeDao;
+import entity.NewsBean;
+import entity.NewstypeBean;
+
+public class NewsTypeDaoImpl implements NewsTypeDao{
+
+	@Override
+	public boolean deletenewstypeById(int typeid) {
+		Session session = HibernateSessionFactory.getSession();
+		Query query = session.createQuery("from newstypebean where typeid = :typeid");
+		query.setInteger("typeid", typeid);
+		return true;
+
+	}
+
+	@Override
+	public boolean insertnewstype(NewstypeBean r) {
+		Session session = HibernateSessionFactory.getSession();
+		NewstypeBean newstypeBean = (NewstypeBean) session.get(entity.NewstypeBean.class, r.getTypeid());
+		newstypeBean.setTypename(r.getTypename());
+		return true;
+	}
+
+
+
+	@Override
+	public List<NewstypeBean> selectNewstype(String select_type) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		Query query = session.createQuery("select newstype from NewstypeBean newstype");
+		return query.list();
+	}
+
+	@Override
+
+	public boolean updatenewstype(NewstypeBean r) {
+		Session session = HibernateSessionFactory.getSession();
+		NewstypeBean ntb = (NewstypeBean)session.get(NewstypeBean.class, 1L);
+		ntb.setTypeid(r.getTypeid());
+		ntb.setTypename(r.getTypename());
+		return true;
+	}
+	
+	public NewstypeBean selectNewstypeById(int _typeid) {
+		Session session = HibernateSessionFactory.getSession();
+		Query query = session.createQuery("select newstype from NewstypeBean newstype where typeid = :typeid");
+		query.setInteger("typeid", _typeid);
+		return (NewstypeBean) query.uniqueResult();
+	}
+	
+	public static void main(String[] args) {
+		NewsTypeDaoImpl n = new NewsTypeDaoImpl();
+		System.out.println(n.selectNewstypeById(1).toString());
+	}
+
+}

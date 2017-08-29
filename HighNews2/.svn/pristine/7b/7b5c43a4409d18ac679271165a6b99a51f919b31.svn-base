@@ -1,0 +1,29 @@
+package action;
+
+import entity.UsersBean;
+
+public class UsersAction {
+	private UsersBean user;
+	public UsersBean getUser() {
+		return user;
+	}
+	public void setUser(UsersBean user) {
+		this.user = user;
+	}
+	public String UpdateUser(){
+		return "SUCCESS";
+	}
+	public String InsertUserById(){
+		return "SUCCESS";
+	}
+	public String DeleteUserById(){
+		return "SUCCESS";
+	}
+	public String SelectUserById(){
+		return "SUCCESS";
+	}
+	
+	public String SelectUser(){
+		return "SUCCESS";
+	}
+}

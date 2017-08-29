@@ -1,0 +1,40 @@
+package action;
+
+import service.NewsTypeService;
+import service.impl.NewsTypeServiceImpl;
+import entity.NewstypeBean;
+
+public class NewsTypeAction {
+	private NewstypeBean newsTypeBean;
+	
+	public NewstypeBean getNewsTypeBean() {
+		return newsTypeBean;
+	}
+	public void setNewsTypeBean(NewstypeBean newsTypeBean) {
+		this.newsTypeBean = newsTypeBean;
+	}
+	public String InsertNewsTypeById(){
+		return "SUCCESS";
+	}
+	public String UpdateNewsType(){
+		System.out.println("newsTypeBean用户信息："+newsTypeBean.getTypeid()+" "+newsTypeBean.getTypename());
+		NewsTypeService newsTypeServiceImpl=new NewsTypeServiceImpl();
+		newsTypeServiceImpl.changeNewsType(newsTypeBean);
+		return "SUCCESS";
+	}
+	
+	public String DeleteNewsTypeById(){
+		System.out.println("newsTypeBean用户信息："+newsTypeBean.getTypeid()+" "+newsTypeBean.getTypename());
+		NewsTypeService newsTypeServiceImpl=new NewsTypeServiceImpl();
+		newsTypeServiceImpl.removeNewsTypeById(newsTypeBean.getTypeid());
+		return "SUCCESS";
+	}
+	
+	public String SelectNewsTypeById(){
+		return "SUCCESS";
+	}
+	
+	public String SelectNewsType(){
+		return "SUCCESS";
+	}
+}

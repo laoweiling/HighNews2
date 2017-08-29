@@ -1,0 +1,82 @@
+package service.impl;
+
+import java.util.List;
+
+import org.hibernate.Session;
+
+import dao.NewsTypeDao;
+import dao.impl.NewsTypeDaoImpl;
+
+import service.NewsTypeService;
+import util.HibernateSessionFactory;
+import entity.NewstypeBean;
+
+public class NewsTypeServiceImpl implements NewsTypeService {
+
+	private static NewsTypeDaoImpl dao = new NewsTypeDaoImpl();
+	@Override
+	public NewstypeBean getNewsTypeById(int _typeid) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		return dao.selectNewstypeById(_typeid);
+	}
+
+	@Override
+	public List<NewstypeBean> getNewsType(String select_type) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		return dao.selectNewstype(select_type);
+	}
+
+	@Override
+	public boolean addNewsType(NewstypeBean r) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		try {
+			session.beginTransaction();
+			dao.insertnewstype(r);
+			session.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			session.getTransaction().rollback();
+		}finally{
+			session.close();
+		}
+		
+		return false;
+	}
+
+	@Override
+
+	public boolean removeNewsTypeById(int _typeid) {
+		Session session = HibernateSessionFactory.getSession();
+		try {
+			dao.deletenewstypeById(_typeid);
+			session.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}finally{
+			session.close();
+		}
+		return false;
+	}
+
+
+	@Override
+	public boolean changeNewsType(NewstypeBean r) {
+		Session session = HibernateSessionFactory.getSession();
+		try {
+			dao.updatenewstype(r);
+			session.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}finally{
+			session.close();
+		}
+		return false;
+	}
+	
+}

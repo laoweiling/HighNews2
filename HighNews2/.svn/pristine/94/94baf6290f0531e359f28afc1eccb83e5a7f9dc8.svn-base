@@ -1,0 +1,78 @@
+package service.impl;
+
+import java.util.Vector;
+
+import org.hibernate.Transaction;
+import org.hibernate.classic.Session;
+
+import dao.NewsDao;
+import dao.impl.NewsDaoImpl;
+
+import util.HibernateSessionFactory;
+
+import entity.NewsBean;
+
+public class NewsService {
+	static Session session;
+	 static Vector<NewsBean> rm = new Vector<NewsBean>();
+	public static void insert(NewsBean newsBean){  //server
+
+		 try{
+			 session = (Session) HibernateSessionFactory.getSession();
+			 //处理格式等
+			 NewsDao dao = new NewsDaoImpl();//
+		     dao.insertNews(newsBean);  // get session, save(obj)
+		     session.beginTransaction();
+		     session.getTransaction().commit();      //回滚以后上面向数据库里添加的代码都没用
+		
+		  }
+		 catch(Exception e){
+			 e.printStackTrace();
+			 session.getTransaction().rollback();
+		  }
+		  finally{
+		      session.close();
+		}
+	}
+	public static void updateNews(NewsBean newsBean){  //server
+
+		 try{
+			 session = (Session) HibernateSessionFactory.getSession();
+			 //处理格式等
+			 NewsDao dao = new NewsDaoImpl();//
+		     dao.updateNews(newsBean);  // get session, save(obj)
+		     session.beginTransaction();
+		     session.getTransaction().commit();      //回滚以后上面向数据库里添加的代码都没用
+		
+		  }
+		 catch(Exception e){
+			 e.printStackTrace();
+			 session.getTransaction().rollback();
+		  }
+		  finally{
+		      session.close();
+		}
+	}
+	public static void deleteNews(NewsBean newsBean){  //server
+
+		 try{
+			 session = (Session) HibernateSessionFactory.getSession();
+			 //处理格式等
+			 NewsDao dao = new NewsDaoImpl();//
+		     dao.deleteNews(newsBean.getNewsid());  // get session, save(obj)
+		     session.beginTransaction();
+		     session.getTransaction().commit();      //回滚以后上面向数据库里添加的代码都没用
+		
+		  }
+		 catch(Exception e){
+			 e.printStackTrace();
+			 session.getTransaction().rollback();
+		  }
+		  finally{
+		      session.close();
+		}
+	}
+	public static Vector<NewsBean> selectNews(String select_type){  //server
+      return rm;
+	}
+}

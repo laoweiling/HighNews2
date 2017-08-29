@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.devMode" value="true"/>
+ 
+    <!-- huanghui   20170111 -->
+     <!-- 新闻处理页面，如果是修改成功，返回updatenewssuccess。 -->
+    <package name="NewsPackage  " extends="struts-default"  namespace="/">
+      <!-- laoweiling  20170110 -->
+      <!-- exe action 调用添加新闻业务逻辑 -->
+     <action name="exe"  class="action.NewsAction" method="exe"> <!-- 指定一个method --> 
+        <result name="newsInfo">/MyIndex/UI_JSP/addtab.jsp</result>
+        <result name="newsList">/index.jsp</result>
+        <result name="addnewssuccess">/MyIndex/UI_JSP/addtab.jsp</result>
+        <result name="addnewsfail">/index.jsp</result>       
+     </action>  
+      <!--pagenation action 调用查询新闻业务逻辑 -->
+   <action name="pagenation" class="action.NewsAction" method="pagenation">
+		<result >/index.jsp</result>
+		<result name="pagenation">/MyIndex/UI_JSP/admintab.jsp</result>
+	</action>
+      <!-- laoweiling  20170110 -->
+   
+   
+  <!-- 黄卉  20170111 -->
+  <!-- UsersAction:调用修改新闻业务逻辑 -->
+     <action name="UsersAction"  class="action.UsersAction">  
+        <result name="updatenewssuccess">/MyIndex/UI_JSP/admintab.jsp</result>
+     </action>
+    </package>
+    <!-- ResourceAction：新闻跳转包，指跳去哪个页面，增加新闻、删除新闻、查询新闻还是删除新闻 -->
+     <package name="ResourceAction" extends="struts-default"  namespace="/">
+     <action name="ResourceAction"  class="action.ResourceAction">  
+        <result name="addtab">/MyIndex/UI_JSP/addtab.jsp</result>
+        <result name="admintab">/MyIndex/UI_JSP/admintab.jsp</result>
+     </action>
+    </package>
+    <!-- 登陆页面 -->
+     <!-- LoginAction：登陆功能，调用登陆业务逻辑处理层 -->
+     <package name="LoginAction" extends="struts-default"  namespace="/">
+     <action name="LoginAction"  class="action.LoginAction">  
+        <result name="success" type="redirect">/MyIndex/UI_JSP/adminmanager.jsp</result>
+        <result name="fail"  type="redirect">/MyIndex/UI_JSP/error.jsp</result>
+     </action>
+    </package>
+    
+        <!--新闻页面  删除功能 -->
+         <!--SelectNewsById：查询单条新闻信息，跳转删除页面。 -->
+     <package name="NewsAction" extends="struts-default"  namespace="/">
+      
+     <action name="SelectNewsById"  class="action.NewsAction" method="SelectNewsById">  
+        <result name="SelectNewsById"  type="dispatcher">/MyIndex/UI_JSP/deletetab.jsp</result>     
+     </action>
+     <!--UpdateSelectNewsById：修改前先查询单个id新闻 ，跳转指定修改页面-->
+      <action name="UpdateSelectNewsById"  class="action.NewsAction" method="SelectNewsById">  
+        <result name="SelectNewsById"  type="dispatcher">/MyIndex/UI_JSP/renewtab.jsp</result>     
+     </action>
+      <!--NewsDeleteAction：删除前先查询单个id新闻，跳转指定主页面 -->
+     <action name="NewsDeleteAction"  class="action.NewsAction" method="DeleteNewsById">  
+        <result name="deletenewssuccess"   type="dispatcher">/MyIndex/UI_JSP/admintab.jsp</result>
+         <result name="deletenewsfail"  type="dispatcher">/MyIndex/UI_JSP/error.jsp</result>
+     </action>
+      <!--SelectNews：查询所有新闻信息功能，framset框架跳转主页 -->
+      <action name="SelectNews"  class="action.NewsAction" method="SelectNews">  
+        <result name="SelectNews"  type="dispatcher">/MyIndex/UI_JSP/admintab.jsp</result>  
+     </action>
+     <!--NewsUpdateAction：新闻页面  修改功能 -->
+      <action name="NewsUpdateAction"  class="action.NewsAction" method="UpdateNews">  
+        <result name="updatenewssuccess"  type="dispatcher">/MyIndex/UI_JSP/admintab.jsp</result>
+         <result name="updatenewfail"  type="dispatcher">"/MyIndex/UI_JSP/admintab.jsp"</result>
+     </action>   
+    </package>
+    <!-- huanghui   20170111 -->
+      
+   <!-- lizhen  20170110 -->
+    <!-- User包 -->
+    <package name="UsersPackage" extends="struts-default"  namespace="/">
+      <!-- InsertUser：插入用户功能，调用插入用户业务逻辑 -->
+    	<action name="InsertUser"  class="action.UsersAction" method="InsertUser"> 
+    	  	<result name="insert_user" type="dispatcher">/MyIndex/UI_JSP/addusertab.jsp</result>
+    	</action>
+    	  <!-- DeleteUser：删除用户，调用删除用户业务逻辑 -->
+    	<action name="DeleteUser" class="action.UsersAction" method="DeleteUserById">
+    		<result name="delete_userById" type="dispatcher">/MyIndex/UI_JSP/selallnewstypetab.jsp</result>
+    	</action>
+    	 <!-- UpdateUser：修改用户，调用修改用户业务逻辑 -->
+    	<action name="UpdateUser" class="action.UsersAction" method="UpdateUser">
+    		<result name="update_user" type="dispatcher">/MyIndex/UI_JSP/selalluserstab.jsp</result>
+    	</action>
+    	 <!-- SelectUser：查询用户，调用查询用户业务逻辑 -->
+    	<action name="SelectUser" class="action.UsersAction" method="SelectUserById">
+    		<result name="show" type="dispatcher">/WEB-INF/JSP/selalluserstab.jsp</result>
+    		<result name="renew" type="dispatcher">/MyIndex/UI_JSP/renewuserstab.jsp</result>
+    		<result name="del" type="dispatcher">/MyIndex/UI_JSP/deluserstab.jsp</result>
+    	</action>
+    	<!-- method：实现业务逻辑跳转 -->
+    	<action name="method" class="action.UsersAction" method="resourceUserAction">
+    		<result name="add" type="dispatcher">/MyIndex/UI_JSP/addusertab.jsp</result>
+    		<result name="renew" type="dispatcher">/MyIndex/UI_JSP/seluserstab.jsp</result>
+    		<result name="del" type="dispatcher">/MyIndex/UI_JSP/seluserstab.jsp</result>
+    		<result name="sel" type="dispatcher">/MyIndex/UI_JSP/seluserstab.jsp</result>
+    	</action>
+    </package>
+    <!-- lizhen 20170111 -->
+    
+     <!-- NewsType包-->
+    <package name="ResourceNewsTypeAction" extends="struts-default"  namespace="/">
+    <!-- ResourceNewsTypeAction：实现页面跳转 -->
+     <action name="ResourceNewsTypeAction"  class="action.ResourceNewsTypeAction">  
+        <result name="addtab">/MyIndex/UI_JSP/addnewstypetab.jsp</result>
+        <result name="admintab">/MyIndex/UI_JSP/selnewstypetab.jsp</result>
+     </action>
+    </package>
+ 
+    <package name="NewsTypePackage" extends="struts-default" namespace="/">
+   	<!-- 海源改 -->
+   	 <!-- SelectNewsType：查询新闻类型 -->
+     <action name="SelectNewsType"  class="action.NewsTypeAction" method="SelectNewsType">  
+        <result name="select_newsType">/MyIndex/UI_JSP/selnewstypetab.jsp</result>
+     </action>
+     <!-- 斯云改 -->
+      <!-- UpdateType：修改新闻类型 -->
+     <action name="UpdateType"  class="action.NewsTypeAction" method="UpdateNewsType">  
+        <result name="update_newsType" type="dispatcher">/MyIndex/UI_JSP/selnewstypetab.jsp</result>
+     </action>
+     <!-- DeleteTypeById：删除新闻类型 -->
+     <action name="DeleteTypeById"  class="action.NewsTypeAction" method="DeleteNewsTypeById">  
+        <result name="delete_newsTypeById" type="dispatcher">/MyIndex/UI_JSP/selnewstypetab.jsp</result>
+     </action>
+     <!-- 斯云改 -->
+      <!-- InsertNewsType：插入新闻类型 -->
+     <action name="InsertNewsType" class="action.NewsTypeAction" method="InsertNewsType">
+     	<result name="insert_newsType" type="dispatcher">/MyIndex/UI_JSP/addnewstypetab.jsp</result>
+     </action> 
+     <!-- 海源改 -->
+    </package>
+</struts>    

@@ -1,0 +1,91 @@
+package action;
+
+import java.util.List;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
+
+import entity.UsersBean;
+import service.UsersService;
+import service.impl.UsersServiceImpl;
+
+//lizhenÐÞ¸Ä  20170111
+public class UsersAction extends BaseAction{
+	private UsersService userService=new UsersServiceImpl();
+	private UsersBean usersBean;
+	private int id;
+	private String method;
+	private String dothing;
+	
+	
+	public String getDothing() {
+		return dothing;
+	}
+	public void setDothing(String dothing) {
+		this.dothing = dothing;
+	}
+	public String getMethod() {
+		return method;
+	}
+	public void setMethod(String method) {
+		this.method = method;
+	}
+	
+	public UsersBean getUsersBean() {
+		return usersBean;
+	}
+	public void setUsersBean(UsersBean usersBean) {
+		this.usersBean = usersBean;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String InsertUser(){
+		userService.addUser(usersBean);
+		return "insert_user";
+		//  /MyIndex/UI_JSP/addusertab.jsp
+	}
+	public String DeleteUserById(){
+		userService.removeUserById(id);
+		return "delete_userById";
+		//  /MyIndex/UI_JSP/selallnewstypetab.jsp
+	}
+	public String UpdateUser(){
+		userService.changeUser(usersBean);
+		return "update_user";
+		//  /MyIndex/UI_JSP/selalluserstab.jsp
+	}
+	
+	public String SelectUserById(){
+		ActionContext actionContext = ActionContext.getContext(); 
+		session=(Map) actionContext.get("session"); 
+		//session.put("alluser", listUser);
+		UsersBean user=userService.getUserById(id);
+		session.put("oneuser", user);
+		return dothing;
+		//show  /WEB-INF/JSP/selalluserstab.jsp
+		//renew  /MyIndex/UI_JSP/renewuserstab.jsp
+		//del  /MyIndex/UI_JSP/deluserstab.jsp
+	}
+	
+	public String resourceUserAction(){
+		
+		if("sel".equals(method)){
+			ActionContext actionContext = ActionContext.getContext(); 
+			List<UsersBean> listUser=userService.getUser("2");
+			session=(Map) actionContext.get("session"); 
+			session.put("alluser", listUser);
+		}
+		return method;
+		//add  /MyIndex/UI_JSP/addusertab.jsp
+		//renew  /MyIndex/UI_JSP/selalluserstab.jsp
+		//del  /MyIndex/UI_JSP/selalluserstab.jsp
+		//sel  /MyIndex/UI_JSP/seluserstab.jsp
+	}
+	
+
+}

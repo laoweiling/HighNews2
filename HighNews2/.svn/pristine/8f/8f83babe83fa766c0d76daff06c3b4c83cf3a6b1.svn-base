@@ -1,0 +1,5 @@
+show tables;
+
+SELECT * FROM usersBean;
+SELECT * FROM STUDENT;
+

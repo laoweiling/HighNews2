@@ -1,0 +1,68 @@
+package dao.impl;
+
+import java.util.Vector;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import dao.NewsDao;
+
+import util.HibernateSessionFactory;
+import entity.NewsBean;
+import entity.UsersBean;
+public class NewsDaoImpl implements NewsDao{
+     boolean flag=false;
+     Session session;
+	@Override
+	public boolean deleteNewsById(int newsid) {
+		  session = HibernateSessionFactory.getSession();	
+		  System.out.println(newsid);
+		
+		  NewsBean newsBean=new NewsBean();
+		  newsBean.setNewsid(newsid);
+		  session.delete(newsBean);
+		 //session.save(nB);
+			System.out.println("删除成功语句");
+			session.beginTransaction();
+			session.getTransaction().commit();
+	    	session.close();
+	    	flag=true;
+			return flag;
+	}
+
+	@Override
+	//添加新闻信息
+	public boolean insertNews(NewsBean nB) {
+		    Session session = HibernateSessionFactory.getSession();	
+			System.out.println(nB);
+			session.save(nB);
+			System.out.println("插入语句");
+			session.beginTransaction();
+			session.getTransaction().commit();
+	    	session.close();
+	    	flag=true;
+			return flag;
+		
+	}
+
+	@Override
+	public NewsBean selectNewsById(int newsid) {
+		Query query = session.createQuery("select e from NewsBean e where e.newsid = :did");
+		query.setInteger("did", newsid);
+		return (NewsBean) query.list();
+	}
+
+	@Override
+	public Vector<NewsBean> selectNewsById(String selectType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateNews(NewsBean nB) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+}

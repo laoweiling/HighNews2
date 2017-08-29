@@ -1,0 +1,28 @@
+package service.impl;
+
+import org.hibernate.classic.Session;
+
+import entity.NewsBean;
+
+public class NewsTypeService {
+	static Session session;
+	public static void insert(NewsBean newsBean){  //server
+  /*
+		 try{
+			 session = (Session) HibernateSessionFactory.getSession();
+			 //处理格式等
+			 NewsDao dao = new NewsDaoImpl();//
+		     dao.insertNews(newsBean);  // get session, save(obj)
+		     session.beginTransaction();
+		     session.getTransaction().commit();      //回滚以后上面向数据库里添加的代码都没用
+		
+		  }
+		 catch(Exception e){
+			 e.printStackTrace();
+			 session.getTransaction().rollback();
+		  }
+		  finally{
+		      session.close();
+		}*/
+	}
+}

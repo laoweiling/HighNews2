@@ -1,0 +1,58 @@
+package service.impl;
+
+import java.util.List;
+
+import org.hibernate.Session;
+
+import dao.impl.NewsTypeDaoImpl;
+import service.NewsTypeService;
+import util.HibernateSessionFactory;
+import entity.NewstypeBean;
+
+public class NewsTypeServiceImpl implements NewsTypeService {
+
+	private static NewsTypeDaoImpl dao = new NewsTypeDaoImpl();
+	@Override
+	public NewstypeBean getNewstypeById(int _typeid) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		return dao.selectNewstypeById(_typeid);
+	}
+
+	@Override
+	public List<NewstypeBean> getNewstype(String select_type) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		return dao.selectNewstype(select_type);
+	}
+
+	@Override
+	public boolean addnewstype(NewstypeBean r) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		try {
+			session.beginTransaction();
+			dao.updatenewstype(r);
+			session.beginTransaction();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			session.getTransaction().rollback();
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean removenewstypeById(int _typeid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean changenewstype(NewstypeBean r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

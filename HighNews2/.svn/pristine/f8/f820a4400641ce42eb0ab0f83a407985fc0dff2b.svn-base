@@ -1,0 +1,15 @@
+package dao;
+
+
+import java.util.Vector;
+
+import entity.NewsBean;
+
+public interface NewsDao {
+	public boolean insertNews(NewsBean nB);
+	public NewsBean selectNews(int _newsid);  //查
+	public Vector<NewsBean> selectNewstype(String select_type);   //查全部，查单个
+	public boolean  deleteNews(int _newsid);     //删
+	public  boolean  updateNews(NewsBean nB);             //改
+	
+	}

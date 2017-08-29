@@ -1,0 +1,13 @@
+package service;
+
+import java.util.List;
+
+import entity.NewstypeBean;
+
+public interface NewsTypeService {
+	 public NewstypeBean getNewstypeById(int _typeid);    //按类型号查找
+	 public List<NewstypeBean> getNewstype(String select_type);   //查全部，查单个
+	 public   boolean  addnewstype(NewstypeBean r);    //增
+	 public   boolean  removenewstypeById(int _typeid);    //删
+	 public   boolean  changenewstype(NewstypeBean r);    //改
+}
